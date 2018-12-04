@@ -19,14 +19,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CheckRegisPageController {
-    @FXML
-    private List<Button> buttonList = new ArrayList<>();
-    @FXML
-    private AnchorPane anchorPane = new AnchorPane();
-    @FXML
-    private FirstPageController firstPageController;
-    @FXML
-    private Button backBtn;
+    @FXML private List<Button> buttonList = new ArrayList<>();
+    @FXML private AnchorPane anchorPane = new AnchorPane();
+    @FXML private FirstPageController firstPageController;
+    @FXML private Button backBtn;
     private DBConnector dbConnector = new DBConnector();
     private int buttonNumber = 0;
     private SubjectInfoPageController subjectInfoPageController = new SubjectInfoPageController();
@@ -177,7 +173,7 @@ public class CheckRegisPageController {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/firstPage.fxml"));
             stage.setScene(new Scene(loader.load(), 625, 400));
-            firstPageController = (FirstPageController) loader.getController();
+            firstPageController = loader.getController();
             stage.show();
         }catch (IOException e){
             e.printStackTrace();
