@@ -10,15 +10,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class FirstPageController {
-    @FXML
-    private Button addBtn,viewAllSubjectBtn,regisCheckBtn;
-
-    @FXML
-    private CheckRegisPageController checkRegisPageController;
-    @FXML
-    private AddSubjectToDBController addSubjectToDBController;
-    @FXML
-    private ToEditOrDeletePageController toEditOrDeletePageController;
+    @FXML private Button addBtn,viewAllSubjectBtn,regisCheckBtn;
+    @FXML private CheckRegisPageController checkRegisPageController;
+    @FXML private AddSubjectToDBController addSubjectToDBController;
+    @FXML private ToEditOrDeletePageController toEditOrDeletePageController;
 
     @FXML
     private void handlerRegisCheckBtn(ActionEvent event){
@@ -27,7 +22,7 @@ public class FirstPageController {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/checkRegisPage.fxml"));
             stage.setScene(new Scene(loader.load(), 515, 400));
-            checkRegisPageController = (CheckRegisPageController) loader.getController();
+            checkRegisPageController = loader.getController();
             stage.show();
         }catch (IOException e){
             e.printStackTrace();

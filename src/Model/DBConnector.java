@@ -111,9 +111,6 @@ public class DBConnector {
             for (int i = 0; i < count; i++) {
                 buttonList.add(new Button("button" + i));
             }
-//            connection.close();
-//            resultSet.close();
-//            statement.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.err.println(e.getStackTrace()[0].getLineNumber());
@@ -133,9 +130,6 @@ public class DBConnector {
             while (resultSet.next()) {
                 count = resultSet.getInt(1);
             }
-//            connection.close();
-//            statement.close();
-//            resultSet.close();
             return count;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -177,49 +171,6 @@ public class DBConnector {
         }
     }
 
-    public void updateIspassedColumn(String id, int isPassed) {
-        try {
-            Class.forName(classForName);
-            connection = DriverManager.getConnection(dbUrl);
-            System.out.println("updateIspassedColumn");
-            statement = connection.createStatement();
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE subjectInfoTable SET ISPASSED=" + isPassed + "WHERE ID=" + id);
-            preparedStatement.executeUpdate();
-            if (!connection.isClosed()) {
-                connection.close();
-            }
-            if (!statement.isClosed()) {
-                statement.close();
-            }
-            if (!preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    public boolean getIspassed(String id) {
-        try {
-            Class.forName(classForName);
-            connection = DriverManager.getConnection(dbUrl);
-            System.out.println("ispassed");
-            Statement getIspassedStatement = connection.createStatement();
-            ResultSet getIspassedResultset = getIspassedStatement.executeQuery("SELECT ISPASSED FROM subjectInfoTable WHERE ID=" + id);
-            if (getIspassedResultset.getInt("ISPASSED") == 1) {
-                return true;
-            }else{
-                return false;
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            return false;
-        }
-    }
     public ObservableList getObservableList(){
         try {
             Class.forName(classForName);
@@ -248,25 +199,6 @@ public class DBConnector {
         }
         return observableList;
     }
-    public ArrayList getPrereq(){
-        ArrayList<String> preReqArrList = new ArrayList<>();
-        try {
-            Class.forName(classForName);
-            connection = DriverManager.getConnection(dbUrl);
-            System.out.println("getObservableList");
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT PREREQUIRE FROM subjectInfoTable");
-            while (resultSet.next()) {
-                preReqArrList.add(resultSet.getString("PREREQUIRE"));
-            }
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return preReqArrList;
-    }
 
     public void deleteSubject(String id) {
         try {
@@ -276,15 +208,6 @@ public class DBConnector {
             statement = connection.createStatement();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM subjectInfoTable WHERE ID=" + id);
             preparedStatement.executeUpdate();
-//            if (!connection.isClosed()) {
-//                connection.close();
-//            }
-//            if (!statement.isClosed()) {
-//                statement.close();
-//            }
-//            if (!preparedStatement.isClosed()) {
-//                preparedStatement.close();
-//            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

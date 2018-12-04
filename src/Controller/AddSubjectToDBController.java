@@ -12,16 +12,11 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class AddSubjectToDBController {
-    @FXML
-    private TextField nameTextField,IDTextField,creditTextField,prerequireTextField;
-    @FXML
-    private ComboBox<Integer> semCmb;
-    @FXML
-    private ComboBox<String> diffLvlCmb;
-    @FXML
-    private Button backBtn,confirmBtn;
-    @FXML
-    private FirstPageController firstPageController;
+    @FXML private TextField nameTextField,IDTextField,creditTextField,prerequireTextField;
+    @FXML private ComboBox<Integer> semCmb;
+    @FXML private ComboBox<String> diffLvlCmb;
+    @FXML private Button backBtn,confirmBtn;
+    @FXML private FirstPageController firstPageController = null;
     private DBConnector dbConnector = new DBConnector();
     private boolean editMode = false;
     private String oldID;
