@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ToEditOrDeletePageController">
+   <children>
+      <TableView fx:id="tableView" layoutX="-1.0" prefHeight="365.0" prefWidth="900.0">
+        <columns>
+            <TableColumn fx:id="idTC" prefWidth="139.99996948242188" resizable="false" style="-fx-alignment: CENTER;" text="ID"><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="nameTC" prefWidth="408.0" style="-fx-alignment: CENTER;" text="Name"><cellValueFactory><PropertyValueFactory property="subjectName" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="creditTC" minWidth="4.0" prefWidth="67.0" style="-fx-alignment: CENTER;" text="Credit"><cellValueFactory><PropertyValueFactory property="credit" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="preReqTC" prefWidth="184.0" resizable="false" style="-fx-alignment: CENTER;" text="PreRequire"><cellValueFactory><PropertyValueFactory property="PreRequire" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="semTC" prefWidth="53.0" text="sem"><cellValueFactory><PropertyValueFactory property="sem" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="passStatTC" prefWidth="74.0" text="Pass Status"><cellValueFactory><PropertyValueFactory property="isPassed" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="diffLvlTC" prefWidth="68.0" text="Difficult level"><cellValueFactory><PropertyValueFactory property="difficultLvl" /></cellValueFactory></TableColumn>
+
+        </columns>
+      </TableView>
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#handlerBackBtn" text="Back" />
+      <Button fx:id="delBtn" layoutX="815.0" layoutY="365.0" mnemonicParsing="false" onAction="#handlerDelBtn" text="Delete" />
+      <Button fx:id="editBtn" layoutX="756.0" layoutY="365.0" mnemonicParsing="false" onAction="#handlerEditBtn" text="Edit" />
+   </children>
+</AnchorPane>
