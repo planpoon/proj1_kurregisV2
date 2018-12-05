@@ -6,15 +6,14 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Subject {
     private String id,subjectName, preRequire;
-    private int credit,sem,isPassed, difficultLvl;
+    private int credit,sem, difficultLvl;
 
-    public Subject(String ID, String subjectName, int credit, String preReqSubject, int sem, int isPassed, int diffLvl) {
+    public Subject(String ID, String subjectName, int credit, String preReqSubject, int sem, int diffLvl) {
         this.id = ID;
         this.subjectName = subjectName;
         this.credit = credit;
         this.preRequire = preReqSubject;
         this.sem = sem;
-        this.isPassed = isPassed;
         this.difficultLvl = diffLvl;
     }
 
@@ -38,9 +37,6 @@ public class Subject {
         return sem;
     }
 
-    public int getIsPassed() {
-        return isPassed;
-    }
 
     public int getDifficultLvl() {
         return difficultLvl;

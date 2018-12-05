@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 
-public class ToEditOrDeletePageController {
+public class TableViewPageController {
     @FXML
     private TableView<Subject> tableView;
     @FXML

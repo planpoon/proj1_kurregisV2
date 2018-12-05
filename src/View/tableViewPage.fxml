@@ -6,7 +6,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ToEditOrDeletePageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TableViewPageController">
    <children>
       <TableView fx:id="tableView" layoutX="-1.0" prefHeight="365.0" prefWidth="900.0">
         <columns>
@@ -15,7 +15,6 @@
             <TableColumn fx:id="creditTC" minWidth="4.0" prefWidth="67.0" style="-fx-alignment: CENTER;" text="Credit"><cellValueFactory><PropertyValueFactory property="credit" /></cellValueFactory></TableColumn>
             <TableColumn fx:id="preReqTC" prefWidth="184.0" resizable="false" style="-fx-alignment: CENTER;" text="PreRequire"><cellValueFactory><PropertyValueFactory property="PreRequire" /></cellValueFactory></TableColumn>
             <TableColumn fx:id="semTC" prefWidth="53.0" text="sem"><cellValueFactory><PropertyValueFactory property="sem" /></cellValueFactory></TableColumn>
-            <TableColumn fx:id="passStatTC" prefWidth="74.0" text="Pass Status"><cellValueFactory><PropertyValueFactory property="isPassed" /></cellValueFactory></TableColumn>
             <TableColumn fx:id="diffLvlTC" prefWidth="68.0" text="Difficult level"><cellValueFactory><PropertyValueFactory property="difficultLvl" /></cellValueFactory></TableColumn>
 
         </columns>

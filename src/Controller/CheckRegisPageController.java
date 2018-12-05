@@ -26,7 +26,7 @@ public class CheckRegisPageController {
     private DBConnector dbConnector = new DBConnector();
     private int buttonNumber = 0;
     private SubjectInfoPageController subjectInfoPageController = new SubjectInfoPageController();
-    private String[][] subjectInfoArr = new String[dbConnector.countAllRow()][6];
+    private String[][] subjectInfoArr = new String[dbConnector.countAllRow()][5];
 
 
 
@@ -34,6 +34,9 @@ public class CheckRegisPageController {
     public void initialize() {
         dbConnector.generateButton(this.buttonList);
         dbConnector.generateSubjectInfoArr(this.subjectInfoArr);
+        System.out.println(subjectInfoArr[0][4].getClass().getName());
+        System.out.println(Integer.parseInt(subjectInfoArr[0][4]));
+        System.out.println(subjectInfoArr[20][4]);
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet1 = null;
@@ -52,7 +55,7 @@ public class CheckRegisPageController {
                 Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection("jdbc:sqlite:subjectInfoDB.db");
                 statement = connection.createStatement();
-                String sqlCommand = String.format("SELECT ID,NAME,CREDIT,PREREQUIRE,ISPASSED,DIFFICULTLEVEL FROM subjectInfoTable WHERE SEM=%d", semester);
+                String sqlCommand = String.format("SELECT ID,NAME,CREDIT,PREREQUIRE,DIFFICULTLEVEL FROM subjectInfoTable WHERE SEM="+ semester);
                 resultSet1= statement.executeQuery(sqlCommand);
 
                 while (resultSet1.next()) {
@@ -98,13 +101,19 @@ public class CheckRegisPageController {
                         }
 
                         if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                            //index0 = id ind1 = name  ind2 = credit  ind3 = prerequire ind4 = ispassed ind5 = DIFFICULTLEVEL
+                            boolean isPassed ;
+                            if (buttonList.get(buttonNum).getStyle().equals("-fx-background-color: #00FF00;")){
+                                isPassed = true;
+                            }else{
+                                isPassed = false;
+                            }
+                            //index0 = id ind1 = name  ind2 = credit  ind3 = prerequire ind4 = DIFFICULTLEVEL
                             passingSubjectData(subjectInfoArr[buttonNum][0]
                                     , subjectInfoArr[buttonNum][1]
                                     , Integer.parseInt(subjectInfoArr[buttonNum][2])
                                     , subjectInfoArr[buttonNum][3]
+                                    , isPassed
                                     , Integer.parseInt(subjectInfoArr[buttonNum][4])
-                                    , Integer.parseInt(subjectInfoArr[buttonNum][5])
                             );
                         }
                     });
@@ -148,14 +157,14 @@ public class CheckRegisPageController {
         }
     }
 
-    private void passingSubjectData(String subjectID,String subjectName,int credit,String preRequire,int isPassed,int difficultLevel){
+    private void passingSubjectData(String subjectID,String subjectName,int credit,String preRequire,boolean isPassed,int difficultLevel){
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/subjectInfoPage.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Subject information ");
-            stage.setScene(new Scene(root, 500, 300));
+            stage.setScene(new Scene(root, 600, 400));
             SubjectInfoPageController subjectInfoPageController = loader.getController();
             subjectInfoPageController.initData(subjectID,subjectName,credit,preRequire,isPassed,difficultLevel);
 

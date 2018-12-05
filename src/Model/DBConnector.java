@@ -29,14 +29,13 @@ public class DBConnector {
             System.out.println("DB connected");
 
             statement = connection.createStatement();
-            String sql = "INSERT INTO subjectInfoTable (ID,NAME,CREDIT,PREREQUIRE,SEM,ISPASSED,DIFFICULTLEVEL) " + "VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO subjectInfoTable (ID,NAME,CREDIT,PREREQUIRE,SEM,DIFFICULTLEVEL) " + "VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, ID);
             preparedStatement.setString(2, subjectName);
             preparedStatement.setInt(3, credit);
             preparedStatement.setInt(5, sem);
-            preparedStatement.setBoolean(6, false);
-            preparedStatement.setInt(7,difficultLevel);
+            preparedStatement.setInt(6,difficultLevel);
 
             preparedStatement.executeUpdate();
 
@@ -59,15 +58,14 @@ public class DBConnector {
             System.out.println("DB connected");
 
             statement = connection.createStatement();
-            String sql = "INSERT INTO subjectInfoTable (ID,NAME,CREDIT,PREREQUIRE,SEM,ISPASSED,DIFFICULTLEVEL) " + "VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO subjectInfoTable (ID,NAME,CREDIT,PREREQUIRE,SEM,DIFFICULTLEVEL) " + "VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, ID);
             preparedStatement.setString(2, subjectName);
             preparedStatement.setInt(3, credit);
             preparedStatement.setString(4, preReSub);
             preparedStatement.setInt(5, sem);
-            preparedStatement.setBoolean(6, false);
-            preparedStatement.setInt(7,difficultLevel);
+            preparedStatement.setInt(6,difficultLevel);
 
             preparedStatement.executeUpdate();
 
@@ -104,6 +102,7 @@ public class DBConnector {
             connection = DriverManager.getConnection(dbUrl);
             System.out.println("generate button");
             statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM subjectInfoTable ORDER BY SEM ASC");
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM subjectInfoTable");
             while (resultSet.next()) {
                 count = resultSet.getInt(1);
@@ -148,7 +147,8 @@ public class DBConnector {
             connection = DriverManager.getConnection(dbUrl);
             System.out.println("gen subject array");
             statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT ID,NAME,CREDIT,PREREQUIRE,ISPASSED,DIFFICULTLEVEL FROM subjectInfoTable");
+//            ResultSet resultSet = statement.executeQuery("SELECT ID,NAME,CREDIT,PREREQUIRE,DIFFICULTLEVEL FROM subjectInfoTable");
+            ResultSet resultSet = statement.executeQuery("SELECT ID,NAME,CREDIT,PREREQUIRE,DIFFICULTLEVEL FROM subjectInfoTable ORDER BY SEM ASC");
             while (resultSet.next()) {
                 if (index < targetArr.length) {
                     targetArr[index][0] = resultSet.getString("ID");
@@ -159,8 +159,7 @@ public class DBConnector {
                     }else {
                         targetArr[index][3] = resultSet.getString("PREREQUIRE");
                     }
-                    targetArr[index][4] = resultSet.getString("ISPASSED");
-                    targetArr[index][5] = resultSet.getString("DIFFICULTLEVEL");
+                    targetArr[index][4] = resultSet.getInt("DIFFICULTLEVEL")+"";
                     index++;
                 }
             }
@@ -184,9 +183,8 @@ public class DBConnector {
                 int credit = resultSet.getInt("CREDIT");
                 String preReq = resultSet.getString("PREREQUIRE");
                 int sem = resultSet.getInt("SEM");
-                int isPassed = resultSet.getInt("ISPASSED");
                 int diffLvl = resultSet.getInt("DIFFICULTLEVEL");
-                observableList.add(new Subject(id, name, credit, preReq, sem, isPassed, diffLvl));
+                observableList.add(new Subject(id, name, credit, preReq, sem, diffLvl));
             }
             if (!connection.isClosed()) {
                 connection.close();

@@ -13,7 +13,7 @@ public class FirstPageController {
     @FXML private Button addBtn,viewAllSubjectBtn,regisCheckBtn;
     @FXML private CheckRegisPageController checkRegisPageController;
     @FXML private AddSubjectToDBController addSubjectToDBController;
-    @FXML private ToEditOrDeletePageController toEditOrDeletePageController;
+    @FXML private TableViewPageController tableViewPageController;
 
     @FXML
     private void handlerRegisCheckBtn(ActionEvent event){
@@ -48,9 +48,9 @@ public class FirstPageController {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/toEditOrDeletePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/tableViewPage.fxml"));
             stage.setScene(new Scene(loader.load(), 900, 400));
-            toEditOrDeletePageController = loader.getController();
+            tableViewPageController = loader.getController();
             stage.show();
         }catch (IOException e){
             e.printStackTrace();

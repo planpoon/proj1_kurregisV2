@@ -30,10 +30,10 @@ public class InitializeSubjectToDB {
 
         dbConnector.addSubject("01418321", "System Analysis & Design", 3, 5, "01418221",2);
         dbConnector.addSubject("01418351", "Computer Communications & Protocols", 3, 5, "01418116",3);
-        dbConnector.addSubject("01418331", "Assembly Language and Computer Architecture", 4, 5, "01418116,and,01418131,or,01420243",2);
+        dbConnector.addSubject("01418331", "Assembly Language and Computer Architecture", 4, 5, "01418116,01418131,01420243",2);
 
-        dbConnector.addSubject("01418333", "Formal Language & Automata Theory", 3, 6, "01418132,or,01417271",2);
-        dbConnector.addSubject("01418497", "Seminar", 1, 6, "01418216,or,01418221,or,01418221",3);
+        dbConnector.addSubject("01418333", "Formal Language & Automata Theory", 3, 6, "01418132,01417271",2);
+        dbConnector.addSubject("01418497", "Seminar", 1, 6, "01418216,01418221,01418221",3);
         dbConnector.addSubject("01418343", "Intellec.Pro.for Software & Digital Contents", 3, 6,1);
         dbConnector.addSubject("01418332", "Operating Systems", 4, 6, "01418331",2);
 

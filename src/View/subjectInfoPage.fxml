@@ -6,15 +6,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SubjectInfoPageController">
     <children>
-        <Label layoutX="89.0" layoutY="90.0" text="ID" />
-        <Label fx:id="nameLabel" layoutX="202.0" layoutY="40.0" prefHeight="17.0" prefWidth="196.0" />
-        <Label fx:id="IDLabel" layoutX="109.0" layoutY="90.0" prefHeight="17.0" prefWidth="93.0" />
-        <Label layoutX="317.0" layoutY="90.0" text="Credit: " />
-        <Label fx:id="creditLabel" layoutX="355.0" layoutY="90.0" prefHeight="17.0" prefWidth="28.0" />
-        <Label fx:id="isPassLabel" layoutX="194.0" layoutY="184.0" prefHeight="66.0" prefWidth="146.0" textAlignment="CENTER">
+        <Label layoutX="89.0" layoutY="90.0" text="ID :" />
+        <Label fx:id="nameLabel" alignment="CENTER" layoutX="202.0" layoutY="40.0" prefHeight="17.0" prefWidth="196.0" text="subject label" textAlignment="CENTER" />
+        <Label fx:id="IDLabel" layoutX="109.0" layoutY="90.0" prefHeight="17.0" prefWidth="93.0" text="id label" />
+        <Label layoutX="398.0" layoutY="90.0" text="Credit: " />
+        <Label fx:id="creditLabel" layoutX="445.0" layoutY="90.0" prefHeight="17.0" prefWidth="28.0" text="credit label" />
+        <Label fx:id="isPassLabel" layoutX="227.0" layoutY="291.0" prefHeight="66.0" prefWidth="146.0" text="passlabel" textAlignment="CENTER">
             <font>
                 <Font size="40.0" />
             </font>
         </Label>
+      <Label layoutX="49.0" layoutY="160.0" prefHeight="17.0" prefWidth="80.0" text="Prerequisite :" />
+      <Label fx:id="prerequireLabel" alignment="TOP_LEFT" layoutX="125.0" layoutY="163.0" prefHeight="17.0" prefWidth="196.0" text="prerequire label" />
+      <Label layoutX="383.0" layoutY="169.0" prefHeight="17.0" prefWidth="80.0" text="Difficult level :" />
+      <Label fx:id="diffLvlLabel" layoutX="473.0" layoutY="169.0" prefHeight="17.0" prefWidth="54.0" text="diff lvl" textFill="FORESTGREEN" />
     </children>
 </AnchorPane>
