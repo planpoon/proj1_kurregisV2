@@ -1,0 +1,10 @@
+done:
+remove ispassed column from db
+
+doing:
+cleansing code
+
+todo :
+reform ui
+remove test class
+try to build jar file

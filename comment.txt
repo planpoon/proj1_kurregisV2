@@ -1,7 +1,0 @@
-                <TableColumn prefWidth="139.99996948242188" resizable="false" style="-fx-alignment: CENTER;" text="ID"><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
-                <TableColumn prefWidth="408.0" style="-fx-alignment: CENTER;" text="Name"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
-                <TableColumn prefWidth="59.0" style="-fx-alignment: CENTER;" text="Credit"><cellValueFactory><PropertyValueFactory property="course" /></cellValueFactory></TableColumn>
-                <TableColumn prefWidth="184.0" resizable="false" style="-fx-alignment: CENTER;" text="Pre Require "><cellValueFactory><PropertyValueFactory property="credit" /></cellValueFactory></TableColumn>
-                <TableColumn prefWidth="58.0" resizable="false" style="-fx-alignment: CENTER;" text="SEM"><cellValueFactory><PropertyValueFactory property="year" /></cellValueFactory></TableColumn>
-                <TableColumn prefWidth="77.0" resizable="false" style="-fx-alignment: CENTER;" text="Pass Stat "><cellValueFactory><PropertyValueFactory property="semester" /></cellValueFactory></TableColumn>
-                <TableColumn prefWidth="165.0" resizable="false" style="-fx-alignment: CENTER;" text="Difficult Level"><cellValueFactory><PropertyValueFactory property="color" /></cellValueFactory></TableColumn>
