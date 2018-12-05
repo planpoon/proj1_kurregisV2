@@ -16,14 +16,10 @@ import java.util.Optional;
 
 
 public class TableViewPageController {
-    @FXML
-    private TableView<Subject> tableView;
-    @FXML
-    private Button backBtn, delBtn;
-    @FXML
-    private TableColumn<Subject, String> idTC, nameTC, preReqTC;
-    @FXML
-    private TableColumn<Subject, Integer> creditTC, diffLvlTC, passStatTC ,semTC;
+    @FXML private TableView<Subject> tableView;
+    @FXML private Button backBtn, delBtn;
+    @FXML private TableColumn<Subject, String> idTC, nameTC, preReqTC;
+    @FXML private TableColumn<Subject, Integer> creditTC, diffLvlTC, passStatTC ,semTC;
 
     private AddSubjectToDBController addSubjectToDBController;
     private FirstPageController firstPageController;

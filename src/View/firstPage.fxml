@@ -2,11 +2,21 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FirstPageController">
    <children>
-      <Button fx:id="regisCheckBtn" layoutX="494.0" layoutY="361.0" mnemonicParsing="false" onAction="#handlerRegisCheckBtn" text="registration check" />
-      <Button fx:id="addBtn" layoutX="20.0" layoutY="361.0" mnemonicParsing="false" onAction="#handlerAddBtn" text="add subject" />
-      <Button fx:id="viewAllSubjectBtn" layoutX="121.0" layoutY="361.0" mnemonicParsing="false" onAction="#handlerGoToEditOrDelPage" text="view all subject" />
+      <Button fx:id="regisCheckBtn" layoutX="198.0" layoutY="239.0" mnemonicParsing="false" onAction="#handlerRegisCheckBtn" prefHeight="93.0" prefWidth="247.0" text="registration check">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <Button fx:id="addBtn" layoutX="212.0" layoutY="29.0" mnemonicParsing="false" onAction="#handlerAddBtn" prefHeight="73.0" prefWidth="201.0" text="add subject">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <Button fx:id="viewAllSubjectBtn" layoutX="215.0" layoutY="124.0" mnemonicParsing="false" onAction="#handlerGoToEditOrDelPage" prefHeight="83.0" prefWidth="201.0" text="view all subject">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
    </children>
 </AnchorPane>
