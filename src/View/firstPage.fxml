@@ -18,5 +18,10 @@
          <font>
             <Font size="24.0" />
          </font></Button>
+      <Button fx:id="instrucBtn" layoutX="481.0" layoutY="286.0" mnemonicParsing="false" onAction="#handlerInstructionBtn" prefHeight="49.0" prefWidth="115.0" text="Instruction">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
