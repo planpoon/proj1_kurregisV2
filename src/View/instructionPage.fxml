@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InstructionPageController">
+    <children>
+        <TextArea layoutX="-1.0" prefHeight="351.0" prefWidth="600.0" text="Instruction&#10;&#10;คลิกซ้าย เพื่อเช็คว่าวิชานี้เรียนไปแล้ว &#10;คลิกขวา เพื่อดูข้อมูลรายวิชา&#10;&#10;กดปิดหน้าinstructionเพื่อเข้าสู้โปรแกรมหลัก" />
+    </children>
+</AnchorPane>

@@ -10,10 +10,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class FirstPageController {
-    @FXML private Button addBtn,viewAllSubjectBtn,regisCheckBtn;
+    @FXML private Button addBtn,viewAllSubjectBtn,regisCheckBtn, instrucBtn;
     @FXML private CheckRegisPageController checkRegisPageController;
     @FXML private AddSubjectToDBController addSubjectToDBController;
     @FXML private TableViewPageController tableViewPageController;
+    @FXML private InstructionPageController instructionPageController;
 
     @FXML
     private void handlerRegisCheckBtn(ActionEvent event){
@@ -37,6 +38,20 @@ public class FirstPageController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/addSubjectToDB.fxml"));
             stage.setScene(new Scene(loader.load(), 600, 400));
             addSubjectToDBController = (AddSubjectToDBController) loader.getController();
+            stage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handlerInstructionBtn(ActionEvent event) {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/instructionPage.fxml"));
+            stage.setScene(new Scene(loader.load(), 500, 300));
+            instructionPageController = loader.getController();
             stage.show();
         }catch (IOException e){
             e.printStackTrace();

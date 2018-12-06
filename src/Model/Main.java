@@ -15,6 +15,13 @@ public class Main extends Application {
             primaryStage.setTitle("KU regis");
             primaryStage.setScene(new Scene(root, 625, 400));
             primaryStage.show();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/instructionPage.fxml"));
+            Parent rootLoader = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Instruction ");
+            stage.setScene(new Scene(rootLoader, 500, 300));
+            stage.show();
         }catch (Exception e){
             e.printStackTrace();
         }
