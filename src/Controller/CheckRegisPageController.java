@@ -31,8 +31,6 @@ public class CheckRegisPageController {
     private SubjectInfoPageController subjectInfoPageController = new SubjectInfoPageController();
     private String[][] subjectInfoArr = new String[dbConnector.countAllRow()][5];
 
-
-
     @FXML
     public void initialize() {
         Alert alert = new Alert(Alert.AlertType.WARNING,"Can not uncheck this subject because next subject is check",ButtonType.OK);
@@ -90,7 +88,6 @@ public class CheckRegisPageController {
                                     }
                                 }
                             }else{
-
                                 for (int i = 0; i <subjectInfoArr.length ; i++) {
                                     if (subjectInfoArr[i][3].contains(subjectInfoArr[buttonNum][0])) {
                                         if (buttonList.get(i).getStyle().equals("-fx-background-color: #00FF00;")) {
