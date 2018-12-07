@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +19,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class CheckRegisPageController {
     @FXML private List<Button> buttonList = new ArrayList<>();
@@ -32,17 +35,14 @@ public class CheckRegisPageController {
 
     @FXML
     public void initialize() {
+        Alert alert = new Alert(Alert.AlertType.WARNING,"Can not uncheck this subject because next subject is check",ButtonType.OK);
         dbConnector.generateButton(this.buttonList);
         dbConnector.generateSubjectInfoArr(this.subjectInfoArr);
-        System.out.println(subjectInfoArr[0][4].getClass().getName());
-        System.out.println(Integer.parseInt(subjectInfoArr[0][4]));
-        System.out.println(subjectInfoArr[20][4]);
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet1 = null;
         ResultSet resultSet2 = null;
         try {
-            System.out.println("initialize");
 
             //group subject by semester
             for (int semester = 1; semester <= 8; semester++) {
@@ -90,11 +90,16 @@ public class CheckRegisPageController {
                                     }
                                 }
                             }else{
-                                buttonList.get(buttonNum).setStyle("");
-                                subjectInfoArr[buttonNum][4] = "0";
+
                                 for (int i = 0; i <subjectInfoArr.length ; i++) {
                                     if (subjectInfoArr[i][3].contains(subjectInfoArr[buttonNum][0])) {
-                                        buttonList.get(i).setDisable(true);
+                                        if (buttonList.get(i).getStyle().equals("-fx-background-color: #00FF00;")) {
+                                            alert.showAndWait();
+                                        }else{
+                                            buttonList.get(buttonNum).setStyle("");
+                                            subjectInfoArr[buttonNum][4] = "0";
+                                            buttonList.get(i).setDisable(true);
+                                        }
                                     }
                                 }
                             }

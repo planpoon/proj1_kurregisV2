@@ -16,7 +16,6 @@ public class SubjectInfoPageController {
         try{
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:subjectInfoDB.db");
-            System.out.println("init Data");
             statement = connection.createStatement();
             String sqlCommand = String.format("SELECT NAME,CREDIT,PREREQUIRE,DIFFCULTLEVEL FROM subjectInfoTable WHERE ID="+ subjectID);
             ResultSet resultSet = statement.executeQuery(sqlCommand);
@@ -24,16 +23,13 @@ public class SubjectInfoPageController {
             IDLabel.setText(subjectID);
             creditLabel.setText(Integer.toString(resultSet.getInt("CREDIT")));
 
-//            connection.close();
-//            statement.close();
-//            resultSet.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-//            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } catch (SQLException e) {
             e.printStackTrace();
-//            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
 

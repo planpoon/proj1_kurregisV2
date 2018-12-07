@@ -26,7 +26,6 @@ public class DBConnector {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
             connection.setAutoCommit(false);
-            System.out.println("DB connected");
 
             statement = connection.createStatement();
             String sql = "INSERT INTO subjectInfoTable (ID,NAME,CREDIT,PREREQUIRE,SEM,DIFFICULTLEVEL) " + "VALUES (?,?,?,?,?,?)";
@@ -47,7 +46,6 @@ public class DBConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Records created successfully");
     }
 
     public void addSubject(String ID, String subjectName, int credit, int sem, String preReSub,int difficultLevel) {
@@ -55,7 +53,6 @@ public class DBConnector {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
             connection.setAutoCommit(false);
-            System.out.println("DB connected");
 
             statement = connection.createStatement();
             String sql = "INSERT INTO subjectInfoTable (ID,NAME,CREDIT,PREREQUIRE,SEM,DIFFICULTLEVEL) " + "VALUES (?,?,?,?,?,?)";
@@ -66,7 +63,6 @@ public class DBConnector {
             preparedStatement.setString(4, preReSub);
             preparedStatement.setInt(5, sem);
             preparedStatement.setInt(6,difficultLevel);
-
             preparedStatement.executeUpdate();
 
             statement.close();
@@ -77,7 +73,6 @@ public class DBConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Records created successfully");
     }
     public void passingSubjectData(String subjectID) {
         try {
@@ -100,9 +95,7 @@ public class DBConnector {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
-            System.out.println("generate button");
             statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM subjectInfoTable ORDER BY SEM ASC");
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM subjectInfoTable");
             while (resultSet.next()) {
                 count = resultSet.getInt(1);
@@ -123,7 +116,6 @@ public class DBConnector {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
-            System.out.println("count row");
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM subjectInfoTable");
             while (resultSet.next()) {
@@ -145,9 +137,7 @@ public class DBConnector {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
-            System.out.println("gen subject array");
             statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery("SELECT ID,NAME,CREDIT,PREREQUIRE,DIFFICULTLEVEL FROM subjectInfoTable");
             ResultSet resultSet = statement.executeQuery("SELECT ID,NAME,CREDIT,PREREQUIRE,DIFFICULTLEVEL FROM subjectInfoTable ORDER BY SEM ASC");
             while (resultSet.next()) {
                 if (index < targetArr.length) {
@@ -174,7 +164,6 @@ public class DBConnector {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
-            System.out.println("getObservableList");
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM subjectInfoTable");
             while (resultSet.next()) {
@@ -202,7 +191,6 @@ public class DBConnector {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
-            System.out.println("deleteSubject");
             statement = connection.createStatement();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM subjectInfoTable WHERE ID=" + id);
             preparedStatement.executeUpdate();
@@ -217,7 +205,6 @@ public class DBConnector {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
-            System.out.println("updateEditedSubject");
             statement = connection.createStatement();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE subjectInfoTable SET ID=" + "\"" + newID + "\"" +
                     ",NAME=" + "\"" + newName + "\"" + ",CREDIT=" + credit + ",PREREQUIRE=" + "\"" + preRequire + "\"" + ",SEM=" + sem +

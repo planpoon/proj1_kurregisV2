@@ -3,6 +3,7 @@ package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -37,7 +38,7 @@ public class FirstPageController {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/addSubjectToDB.fxml"));
             stage.setScene(new Scene(loader.load(), 600, 400));
-            addSubjectToDBController = (AddSubjectToDBController) loader.getController();
+            addSubjectToDBController = loader.getController();
             stage.show();
         }catch (IOException e){
             e.printStackTrace();
@@ -46,11 +47,12 @@ public class FirstPageController {
 
     @FXML
     private void handlerInstructionBtn(ActionEvent event) {
-        Button b = (Button) event.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/instructionPage.fxml"));
-            stage.setScene(new Scene(loader.load(), 500, 300));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Subject information ");
+            stage.setScene(new Scene(root, 500, 300));
             instructionPageController = loader.getController();
             stage.show();
         }catch (IOException e){
