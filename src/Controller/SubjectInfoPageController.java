@@ -58,7 +58,5 @@ public class SubjectInfoPageController {
             isPassLabel.setText("FAILED");
             isPassLabel.setStyle("-fx-background-color: #FF0000");
         }
-
-
     }
 }

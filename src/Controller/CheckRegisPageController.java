@@ -159,6 +159,15 @@ public class CheckRegisPageController {
         }
     }
 
+    /**
+     *
+     * @param subjectID ID of subject
+     * @param subjectName name of subject
+     * @param credit credit of subject
+     * @param preRequire ID of preRequire subject
+     * @param isPassed is this subject pass or not
+     * @param difficultLevel 1=easy 2=normal 3=hard
+     */
     private void passingSubjectData(String subjectID,String subjectName,int credit,String preRequire,boolean isPassed,int difficultLevel){
         try {
 
