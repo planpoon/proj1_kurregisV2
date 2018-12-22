@@ -2,13 +2,18 @@ package Controller;
 
 import Model.DBConnector;
 import Model.Subject;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,9 +22,9 @@ import java.util.Optional;
 
 public class TableViewPageController {
     @FXML private TableView<Subject> tableView;
-    @FXML private Button backBtn, delBtn;
-    @FXML private TableColumn<Subject, String> idTC, nameTC, preReqTC;
-    @FXML private TableColumn<Subject, Integer> creditTC, diffLvlTC, passStatTC ,semTC;
+    @FXML private Button backBtn, delBtn, editBtn;
+    @FXML private TableColumn<Subject, String> idTC, nameTC, preReqTC, diffLvlTC;
+    @FXML private TableColumn<Subject, Integer> creditTC, passStatTC ,semTC;
 
     private AddSubjectToDBController addSubjectToDBController;
     private FirstPageController firstPageController;
@@ -27,10 +32,45 @@ public class TableViewPageController {
     private DBConnector dbConnector = new DBConnector();
 
     public void initialize() {
+        editBtn.setDisable(true);
+        delBtn.setDisable(true);
         subjectObservableList = dbConnector.getObservableList();
         tableView.setItems(null);
         tableView.setItems(subjectObservableList);
+        diffLvlTC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDifficultLvl()));
+        diffLvlTC.setCellFactory(column -> new TableCell<Subject, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if(empty){
+                    setText(null);
+                    setStyle("");
+                }else {
+                    setText(item);
+                    setTextFill(Color.WHITE);
+                    if (item.equalsIgnoreCase("Hard")) {
+                        setStyle("-fx-background-color: red");
+                    }else if(item.equalsIgnoreCase("Normal")){
+                        setStyle("-fx-background-color: blue");
+                    }else if(item.equalsIgnoreCase("Easy")){
+                        setStyle("-fx-background-color: green");
+                    }
+                }
+            }
+
+        });
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 1) {
+                    if (tableView.getSelectionModel().getSelectedItem() != null) {
+                        editBtn.setDisable(false);
+                        delBtn.setDisable(false);
+                    }
+                }
+            }
+        });
     }
+
 
     @FXML
     private void handlerDelBtn(ActionEvent event) {

@@ -11,8 +11,8 @@ public class SubjectInfoPageController {
     @FXML private Label nameLabel, IDLabel, creditLabel, isPassLabel, prerequireLabel, diffLvlLabel;
 
     public void initData(String subjectID){
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection ;
+        Statement statement ;
         try{
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:subjectInfoDB.db");
@@ -32,29 +32,39 @@ public class SubjectInfoPageController {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-
     }
 
-    public void initData(String subjectID,String subjectName,int credit,String preRequire,boolean isPassed,int difficultLevel){
+    public void initData(String subjectID, String subjectName, int credit, String preRequire, boolean isPassed, String difficultLevel) {
         nameLabel.setText(subjectName);
         IDLabel.setText(subjectID);
         creditLabel.setText(Integer.toString(credit));
         prerequireLabel.setText(preRequire);
-        if (difficultLevel == 1) {
-            diffLvlLabel.setText("Easy");
+//        if (difficultLevel == 1) {
+//            diffLvlLabel.setText("Easy");
+//            diffLvlLabel.setTextFill(Color.GREEN);
+//        }
+//        if (difficultLevel == 2) {
+//            diffLvlLabel.setText("Normal");
+//            diffLvlLabel.setTextFill(Color.ORANGE);
+//        }if (difficultLevel == 3){
+//            diffLvlLabel.setText("Hard");
+//            diffLvlLabel.setTextFill(Color.RED);
+//        }
+        diffLvlLabel.setText(difficultLevel);
+        if (difficultLevel.equals("Easy")) {
             diffLvlLabel.setTextFill(Color.GREEN);
         }
-        if (difficultLevel == 2) {
-            diffLvlLabel.setText("Normal");
-            diffLvlLabel.setTextFill(Color.ORANGE);
-        }if (difficultLevel == 3){
-            diffLvlLabel.setText("Hard");
+        if (difficultLevel.equals("Normal")) {
+            diffLvlLabel.setTextFill(Color.BLUE);
+        }
+        if (difficultLevel.equals("Hard")) {
+
             diffLvlLabel.setTextFill(Color.RED);
         }
-        if (isPassed){
+        if (isPassed) {
             isPassLabel.setText("PASSED");
             isPassLabel.setStyle("-fx-background-color: #00FF00");
-        }else{
+        } else {
             isPassLabel.setText("FAILED");
             isPassLabel.setStyle("-fx-background-color: #FF0000");
         }

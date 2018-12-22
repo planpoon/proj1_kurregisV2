@@ -41,7 +41,6 @@ public class CheckRegisPageController {
         ResultSet resultSet1 = null;
         ResultSet resultSet2 = null;
         try {
-
             //group subject by semester
             for (int semester = 1; semester <= 8; semester++) {
                 //x and y are coordinate of each button that contain subject
@@ -81,7 +80,6 @@ public class CheckRegisPageController {
                         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                             if (buttonList.get(buttonNum).getStyle().equals("")) {
                                 buttonList.get(buttonNum).setStyle("-fx-background-color: #00FF00;");
-                                subjectInfoArr[buttonNum][4] = "1";
                                 for (int i = 0; i <subjectInfoArr.length ; i++) {
                                     if (subjectInfoArr[i][3].contains(subjectInfoArr[buttonNum][0])) {
                                         buttonList.get(i).setDisable(false);
@@ -94,7 +92,6 @@ public class CheckRegisPageController {
                                             alert.showAndWait();
                                         }else{
                                             buttonList.get(buttonNum).setStyle("");
-                                            subjectInfoArr[buttonNum][4] = "0";
                                             buttonList.get(i).setDisable(true);
                                         }
                                     }
@@ -115,7 +112,7 @@ public class CheckRegisPageController {
                                     , Integer.parseInt(subjectInfoArr[buttonNum][2])
                                     , subjectInfoArr[buttonNum][3]
                                     , isPassed
-                                    , Integer.parseInt(subjectInfoArr[buttonNum][4])
+                                    , subjectInfoArr[buttonNum][4]
                             );
                         }
                     });
@@ -168,7 +165,7 @@ public class CheckRegisPageController {
      * @param isPassed is this subject pass or not
      * @param difficultLevel 1=easy 2=normal 3=hard
      */
-    private void passingSubjectData(String subjectID,String subjectName,int credit,String preRequire,boolean isPassed,int difficultLevel){
+    private void passingSubjectData(String subjectID,String subjectName,int credit,String preRequire,boolean isPassed,String difficultLevel){
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/subjectInfoPage.fxml"));

@@ -5,10 +5,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Subject {
-    private String id,subjectName, preRequire;
-    private int credit,sem, difficultLvl;
+    private String id,subjectName, preRequire, difficultLvl;
+    private int credit,sem;
 
-    public Subject(String ID, String subjectName, int credit, String preReqSubject, int sem, int diffLvl) {
+    public Subject(String ID, String subjectName, int credit, String preReqSubject, int sem, String diffLvl) {
         this.id = ID;
         this.subjectName = subjectName;
         this.credit = credit;
@@ -37,8 +37,7 @@ public class Subject {
         return sem;
     }
 
-
-    public int getDifficultLvl() {
+    public String getDifficultLvl() {
         return difficultLvl;
     }
 }

@@ -26,14 +26,14 @@ public class AddSubjectToDBController {
         diffLvlCmb.getItems().addAll("Easy", "Normal", "Hard");
     }
 
-    public void initData(String id,String subjectName,int credit,String preReq,int sem,int diffLvl) {
+    public void initData(String id,String subjectName,int credit,String preReq,int sem,String diffLvl) {
         oldID = id;
         nameTextField.setText(subjectName);
         IDTextField.setText(id);
         creditTextField.setText(credit + "");
         prerequireTextField.setText(preReq);
         semCmb.getSelectionModel().select(sem - 1);
-        diffLvlCmb.getSelectionModel().select(diffLvl - 1);
+        diffLvlCmb.getSelectionModel().select(diffLvl);
     }
 
     @FXML
@@ -64,7 +64,7 @@ public class AddSubjectToDBController {
                     dbConnector.updateEditedSubject(oldID, IDTextField.getText(),
                             nameTextField.getText(), Integer.parseInt(creditTextField.getText()),
                             prerequireTextField.getText(), semCmb.getSelectionModel().getSelectedItem(),
-                            diffLvlCmb.getSelectionModel().getSelectedIndex());
+                            diffLvlCmb.getSelectionModel().getSelectedItem());
                 }
             }
         }else{
@@ -73,15 +73,15 @@ public class AddSubjectToDBController {
             if (result.isPresent() && result.get().equals(ButtonType.OK)) {
                 if (checkTextFieldCondition()){
                     if (prerequireTextField.getText().isEmpty()) {
-                        int diffLvl = 0;
-                        if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Easy")) {
-                            diffLvl = 1;
-                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Normal")) {
-                            diffLvl = 2;
-                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Hard")) {
-                            diffLvl = 3;
-                        }
-                        dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), diffLvl);
+//                        int diffLvl = 0;
+//                        if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Easy")) {
+//                            diffLvl = 1;
+//                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Normal")) {
+//                            diffLvl = 2;
+//                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Hard")) {
+//                            diffLvl = 3;
+//                        }
+                        dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), diffLvlCmb.getSelectionModel().getSelectedItem());
                         nameTextField.setText("");
                         IDTextField.setText("");
                         creditTextField.setText("");
@@ -89,15 +89,7 @@ public class AddSubjectToDBController {
                         semCmb.getSelectionModel().select(null);
                         diffLvlCmb.getSelectionModel().select(null);
                     }else{
-                        int diffLvl = 0;
-                        if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Easy")) {
-                            diffLvl = 1;
-                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Normal")) {
-                            diffLvl = 2;
-                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Hard")) {
-                            diffLvl = 3;
-                        }
-                        dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), prerequireTextField.getText(), diffLvl);
+                        dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), prerequireTextField.getText(), diffLvlCmb.getSelectionModel().getSelectedItem());
                         nameTextField.setText("");
                         IDTextField.setText("");
                         creditTextField.setText("");

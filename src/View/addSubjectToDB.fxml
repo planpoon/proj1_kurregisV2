@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddSubjectToDBController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddSubjectToDBController">
    <children>
       <TextField fx:id="nameTextField" layoutX="123.0" layoutY="44.0" promptText="ex. Introduction to Computer Science" />
       <Label layoutX="41.0" layoutY="48.0" text="Subject Name*" />
@@ -14,7 +14,7 @@
       <Label layoutX="350.0" layoutY="48.0" text="Subject ID*" />
       <TextField fx:id="creditTextField" layoutX="123.0" layoutY="97.0" prefHeight="25.0" prefWidth="46.0" promptText="ex. 3" />
       <Label layoutX="78.0" layoutY="101.0" text="Credit*" />
-      <TextField fx:id="prerequireTextField" layoutX="417.0" layoutY="97.0" promptText="ex. 01418114" />
+      <TextField fx:id="prerequireTextField" layoutX="417.0" layoutY="97.0" promptText="ex. 01418114,01418116" />
       <Label layoutX="308.0" layoutY="101.0" text="Prerequire subject" />
       <Label layoutX="70.0" layoutY="167.0" text="Semester*" />
       <Label layoutX="332.0" layoutY="168.0" text="difficult level*" />

@@ -21,7 +21,7 @@ public class DBConnector {
     private Statement statement = null;
     private ObservableList<Subject> observableList = FXCollections.observableArrayList();
 
-    public void addSubject(String ID, String subjectName, int credit, int sem,int difficultLevel) {
+    public void addSubject(String ID, String subjectName, int credit, int sem,String difficultLevel) {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
@@ -34,7 +34,7 @@ public class DBConnector {
             preparedStatement.setString(2, subjectName);
             preparedStatement.setInt(3, credit);
             preparedStatement.setInt(5, sem);
-            preparedStatement.setInt(6,difficultLevel);
+            preparedStatement.setString(6,difficultLevel);
 
             preparedStatement.executeUpdate();
 
@@ -48,7 +48,7 @@ public class DBConnector {
         }
     }
 
-    public void addSubject(String ID, String subjectName, int credit, int sem, String preReSub,int difficultLevel) {
+    public void addSubject(String ID, String subjectName, int credit, int sem, String preReSub,String difficultLevel) {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
@@ -62,7 +62,7 @@ public class DBConnector {
             preparedStatement.setInt(3, credit);
             preparedStatement.setString(4, preReSub);
             preparedStatement.setInt(5, sem);
-            preparedStatement.setInt(6,difficultLevel);
+            preparedStatement.setString(6,difficultLevel);
             preparedStatement.executeUpdate();
 
             statement.close();
@@ -149,7 +149,7 @@ public class DBConnector {
                     }else {
                         targetArr[index][3] = resultSet.getString("PREREQUIRE");
                     }
-                    targetArr[index][4] = resultSet.getInt("DIFFICULTLEVEL")+"";
+                    targetArr[index][4] = resultSet.getString("DIFFICULTLEVEL")+"";
                     index++;
                 }
             }
@@ -172,7 +172,7 @@ public class DBConnector {
                 int credit = resultSet.getInt("CREDIT");
                 String preReq = resultSet.getString("PREREQUIRE");
                 int sem = resultSet.getInt("SEM");
-                int diffLvl = resultSet.getInt("DIFFICULTLEVEL");
+                String diffLvl = resultSet.getString("DIFFICULTLEVEL");
                 observableList.add(new Subject(id, name, credit, preReq, sem, diffLvl));
             }
             if (!connection.isClosed()) {
@@ -201,14 +201,14 @@ public class DBConnector {
         }
     }
 
-    public void updateEditedSubject(String oldID, String newID, String newName, int credit, String preRequire, int sem, int diffLvl) {
+    public void updateEditedSubject(String oldID, String newID, String newName, int credit, String preRequire, int sem, String diffLvl) {
         try {
             Class.forName(classForName);
             connection = DriverManager.getConnection(dbUrl);
             statement = connection.createStatement();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE subjectInfoTable SET ID=" + "\"" + newID + "\"" +
                     ",NAME=" + "\"" + newName + "\"" + ",CREDIT=" + credit + ",PREREQUIRE=" + "\"" + preRequire + "\"" + ",SEM=" + sem +
-                    ",DIFFICULTLEVEL=" + diffLvl + " WHERE ID=" + oldID);
+                    ",DIFFICULTLEVEL=" + "\"" + diffLvl + "\"" + " WHERE ID=" + oldID);
             preparedStatement.executeUpdate();
 
             if (!statement.isClosed()) {

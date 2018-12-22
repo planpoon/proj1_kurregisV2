@@ -24,6 +24,7 @@ public class FirstPageController {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/checkRegisPage.fxml"));
             stage.setScene(new Scene(loader.load(), 515, 400));
+            stage.setResizable(false);
             checkRegisPageController = loader.getController();
             stage.show();
         }catch (IOException e){
