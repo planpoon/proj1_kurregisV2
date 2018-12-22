@@ -39,17 +39,6 @@ public class SubjectInfoPageController {
         IDLabel.setText(subjectID);
         creditLabel.setText(Integer.toString(credit));
         prerequireLabel.setText(preRequire);
-//        if (difficultLevel == 1) {
-//            diffLvlLabel.setText("Easy");
-//            diffLvlLabel.setTextFill(Color.GREEN);
-//        }
-//        if (difficultLevel == 2) {
-//            diffLvlLabel.setText("Normal");
-//            diffLvlLabel.setTextFill(Color.ORANGE);
-//        }if (difficultLevel == 3){
-//            diffLvlLabel.setText("Hard");
-//            diffLvlLabel.setTextFill(Color.RED);
-//        }
         diffLvlLabel.setText(difficultLevel);
         if (difficultLevel.equals("Easy")) {
             diffLvlLabel.setTextFill(Color.GREEN);
