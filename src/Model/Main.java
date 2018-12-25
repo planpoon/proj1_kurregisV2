@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("../View/firstPage.fxml"));
-            primaryStage.setTitle("KU regis");
+            Parent root = FXMLLoader.load(getClass().getResource("../View/menuPage.fxml"));
+            primaryStage.setTitle("KU regis Menu");
             primaryStage.setScene(new Scene(root, 625, 400));
             primaryStage.show();
 

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FirstPageController">
+<AnchorPane prefHeight="400.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuPageController">
    <children>
       <Button fx:id="regisCheckBtn" layoutX="198.0" layoutY="239.0" mnemonicParsing="false" onAction="#handlerRegisCheckBtn" prefHeight="93.0" prefWidth="247.0" text="registration check">
          <font>

@@ -11,12 +11,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class AddSubjectToDBController {
+public class AddAndEditSubjectController {
     @FXML private TextField nameTextField,IDTextField,creditTextField,prerequireTextField;
     @FXML private ComboBox<Integer> semCmb;
     @FXML private ComboBox<String> diffLvlCmb;
     @FXML private Button backBtn,confirmBtn;
-    @FXML private FirstPageController firstPageController = null;
+    @FXML private MenuPageController menuPageController = null;
     private DBConnector dbConnector = new DBConnector();
     private boolean editMode = false;
     private String oldID;
@@ -41,9 +41,11 @@ public class AddSubjectToDBController {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/firstPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/menuPage.fxml"));
+            stage.setResizable(false);
+            stage.setTitle("KU regis Menu");
             stage.setScene(new Scene(loader.load(), 625, 400));
-            firstPageController = loader.getController();
+            menuPageController = loader.getController();
             stage.show();
         }catch (IOException e){
             e.printStackTrace();
@@ -73,14 +75,6 @@ public class AddSubjectToDBController {
             if (result.isPresent() && result.get().equals(ButtonType.OK)) {
                 if (checkTextFieldCondition()){
                     if (prerequireTextField.getText().isEmpty()) {
-//                        int diffLvl = 0;
-//                        if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Easy")) {
-//                            diffLvl = 1;
-//                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Normal")) {
-//                            diffLvl = 2;
-//                        } else if (diffLvlCmb.getSelectionModel().getSelectedItem().equals("Hard")) {
-//                            diffLvl = 3;
-//                        }
                         dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), diffLvlCmb.getSelectionModel().getSelectedItem());
                         nameTextField.setText("");
                         IDTextField.setText("");

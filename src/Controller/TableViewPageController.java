@@ -2,7 +2,6 @@ package Controller;
 
 import Model.DBConnector;
 import Model.Subject;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,8 +25,8 @@ public class TableViewPageController {
     @FXML private TableColumn<Subject, String> idTC, nameTC, preReqTC, diffLvlTC;
     @FXML private TableColumn<Subject, Integer> creditTC, passStatTC ,semTC;
 
-    private AddSubjectToDBController addSubjectToDBController;
-    private FirstPageController firstPageController;
+    private AddAndEditSubjectController addAndEditSubjectController;
+    private MenuPageController menuPageController;
     private ObservableList<Subject> subjectObservableList = FXCollections.observableArrayList();
     private DBConnector dbConnector = new DBConnector();
 
@@ -97,13 +96,15 @@ public class TableViewPageController {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/addSubjectToDB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/addAndEditSubject.fxml"));
             stage.setScene(new Scene(loader.load(), 625, 400));
-            addSubjectToDBController = loader.getController();
-            addSubjectToDBController.initData(selectedSubject.getId(), selectedSubject.getSubjectName(),
+            stage.setResizable(false);
+            stage.setTitle("Edit page");
+            addAndEditSubjectController = loader.getController();
+            addAndEditSubjectController.initData(selectedSubject.getId(), selectedSubject.getSubjectName(),
                     selectedSubject.getCredit(), selectedSubject.getPreRequire(),
                     selectedSubject.getSem(), selectedSubject.getDifficultLvl());
-            addSubjectToDBController.setEditMode(true);
+            addAndEditSubjectController.setEditMode(true);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -115,9 +116,10 @@ public class TableViewPageController {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/firstPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/menuPage.fxml"));
+            stage.setTitle("Ku regis Menu");
             stage.setScene(new Scene(loader.load(), 625, 400));
-            firstPageController = loader.getController();
+            menuPageController = loader.getController();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

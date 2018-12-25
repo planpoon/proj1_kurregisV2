@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddSubjectToDBController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddAndEditSubjectController">
    <children>
       <TextField fx:id="nameTextField" layoutX="123.0" layoutY="44.0" promptText="ex. Introduction to Computer Science" />
       <Label layoutX="41.0" layoutY="48.0" text="Subject Name*" />

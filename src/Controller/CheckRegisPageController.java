@@ -10,21 +10,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class CheckRegisPageController {
     @FXML private List<Button> buttonList = new ArrayList<>();
     @FXML private AnchorPane anchorPane = new AnchorPane();
-    @FXML private FirstPageController firstPageController;
+    @FXML private MenuPageController menuPageController;
     @FXML private Button backBtn;
     private DBConnector dbConnector = new DBConnector();
     private int buttonNumber = 0;
@@ -101,11 +98,7 @@ public class CheckRegisPageController {
 
                         if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                             boolean isPassed ;
-                            if (buttonList.get(buttonNum).getStyle().equals("-fx-background-color: #00FF00;")){
-                                isPassed = true;
-                            }else{
-                                isPassed = false;
-                            }
+                            isPassed = buttonList.get(buttonNum).getStyle().equals("-fx-background-color: #00FF00;");
                             //index0 = id ind1 = name  ind2 = credit  ind3 = prerequire ind4 = DIFFICULTLEVEL
                             passingSubjectData(subjectInfoArr[buttonNum][0]
                                     , subjectInfoArr[buttonNum][1]
@@ -172,6 +165,7 @@ public class CheckRegisPageController {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Subject information ");
+            stage.setResizable(false);
             stage.setScene(new Scene(root, 600, 400));
             SubjectInfoPageController subjectInfoPageController = loader.getController();
             subjectInfoPageController.initData(subjectID,subjectName,credit,preRequire,isPassed,difficultLevel);
@@ -188,9 +182,11 @@ public class CheckRegisPageController {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/firstPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/menuPage.fxml"));
             stage.setScene(new Scene(loader.load(), 625, 400));
-            firstPageController = loader.getController();
+            stage.setResizable(false);
+            stage.setTitle("Ku regis Menu");
+            menuPageController = loader.getController();
             stage.show();
         }catch (IOException e){
             e.printStackTrace();
