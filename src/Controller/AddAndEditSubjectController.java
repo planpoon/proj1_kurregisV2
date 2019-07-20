@@ -55,41 +55,54 @@ public class AddAndEditSubjectController {
     @FXML
     private void handlerConfirmBtn(ActionEvent event) {
         Optional<ButtonType> result;
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText(null);
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        confirmAlert.setTitle("Confirmation");
+        confirmAlert.setHeaderText(null);
+        errorAlert.setTitle("Error Dialog");
+        errorAlert.setHeaderText("Duplicate Value");
+        errorAlert.setContentText("id or name is duplicate");
         if (editMode) {
-            alert.setContentText("Are you sure to edit subject");
-            result = alert.showAndWait();
+            confirmAlert.setContentText("Are you sure to edit subject");
+            result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get().equals(ButtonType.OK)) {
                 if (checkTextFieldCondition()) {
-                    dbConnector.updateEditedSubject(oldID, IDTextField.getText(),
-                            nameTextField.getText(), Integer.parseInt(creditTextField.getText()),
-                            prerequireTextField.getText(), semCmb.getSelectionModel().getSelectedItem(),
-                            diffLvlCmb.getSelectionModel().getSelectedItem());
+                    if (dbConnector.checkNotDupicateUniqueField(IDTextField.getText(),nameTextField.getText())){
+                        dbConnector.updateEditedSubject(oldID, IDTextField.getText(),
+                                nameTextField.getText(), Integer.parseInt(creditTextField.getText()),
+                                prerequireTextField.getText(), semCmb.getSelectionModel().getSelectedItem(),
+                                diffLvlCmb.getSelectionModel().getSelectedItem());
+                    }else{
+                        errorAlert.showAndWait();
+                    }
+
                 }
             }
         }else{
-            alert.setContentText("Are you sure to add subject");
-            result = alert.showAndWait();
+            confirmAlert.setContentText("Are you sure to add subject");
+            result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get().equals(ButtonType.OK)) {
                 if (checkTextFieldCondition()){
-                    if (prerequireTextField.getText().isEmpty()) {
-                        dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), diffLvlCmb.getSelectionModel().getSelectedItem());
-                        nameTextField.setText("");
-                        IDTextField.setText("");
-                        creditTextField.setText("");
-                        prerequireTextField.setText("");
-                        semCmb.getSelectionModel().select(null);
-                        diffLvlCmb.getSelectionModel().select(null);
+                    if (dbConnector.checkNotDupicateUniqueField(IDTextField.getText(),nameTextField.getText())){
+                        if (prerequireTextField.getText().isEmpty()) {
+                            dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), diffLvlCmb.getSelectionModel().getSelectedItem());
+                            nameTextField.setText("");
+                            IDTextField.setText("");
+                            creditTextField.setText("");
+                            prerequireTextField.setText("");
+                            semCmb.getSelectionModel().select(null);
+                            diffLvlCmb.getSelectionModel().select(null);
+                        }else{
+                            dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), prerequireTextField.getText(), diffLvlCmb.getSelectionModel().getSelectedItem());
+                            nameTextField.setText("");
+                            IDTextField.setText("");
+                            creditTextField.setText("");
+                            prerequireTextField.setText("");
+                            semCmb.getSelectionModel().select(null);
+                            diffLvlCmb.getSelectionModel().select(null);
+                        }
                     }else{
-                        dbConnector.addSubject(IDTextField.getText(), nameTextField.getText(), Integer.parseInt(creditTextField.getText()), semCmb.getSelectionModel().getSelectedItem(), prerequireTextField.getText(), diffLvlCmb.getSelectionModel().getSelectedItem());
-                        nameTextField.setText("");
-                        IDTextField.setText("");
-                        creditTextField.setText("");
-                        prerequireTextField.setText("");
-                        semCmb.getSelectionModel().select(null);
-                        diffLvlCmb.getSelectionModel().select(null);
+                        errorAlert.showAndWait();
                     }
                 }
             }
@@ -143,4 +156,5 @@ public class AddAndEditSubjectController {
     public void setEditMode(boolean editMode) {
         this.editMode = editMode;
     }
+
 }

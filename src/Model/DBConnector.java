@@ -21,6 +21,8 @@ public class DBConnector {
     private Statement statement = null;
     private ObservableList<Subject> observableList = FXCollections.observableArrayList();
 
+
+    //create
     public void addSubject(String ID, String subjectName, int credit, int sem,String difficultLevel) {
         try {
             Class.forName(classForName);
@@ -48,6 +50,7 @@ public class DBConnector {
         }
     }
 
+    //create
     public void addSubject(String ID, String subjectName, int credit, int sem, String preReSub,String difficultLevel) {
         try {
             Class.forName(classForName);
@@ -111,6 +114,8 @@ public class DBConnector {
             System.err.println(e.getStackTrace()[0].getLineNumber());
         }
     }
+
+    //read
     public int countAllRow() {
         int count = 0;
         try {
@@ -187,6 +192,7 @@ public class DBConnector {
         return observableList;
     }
 
+    //delete
     public void deleteSubject(String id) {
         try {
             Class.forName(classForName);
@@ -201,6 +207,7 @@ public class DBConnector {
         }
     }
 
+    //update
     public void updateEditedSubject(String oldID, String newID, String newName, int credit, String preRequire, int sem, String diffLvl) {
         try {
             Class.forName(classForName);
@@ -224,6 +231,35 @@ public class DBConnector {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    //read
+    public boolean checkNotDupicateUniqueField(String id, String subjectName) {
+        int count = 0;
+        try {
+            Class.forName(classForName);
+            connection = DriverManager.getConnection(dbUrl);
+            statement = connection.createStatement();
+            String executeStatement = "SELECT COUNT(*) FROM subjectInfoTable WHERE ID=" + id + " or NAME=" + "\"" + subjectName + "\"";
+            ResultSet resultSet = statement.executeQuery(executeStatement);
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+            if (count == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (count == 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
